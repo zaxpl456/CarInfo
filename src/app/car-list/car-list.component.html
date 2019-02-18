@@ -1,0 +1,57 @@
+<mat-card>
+<div>
+<h2>Lista pojazdów</h2>
+</div>
+
+<div class="table-responsive">
+    <nav class="navbar">
+    <span>Wyszukaj</span>
+      <input class="form-control" type="text" name="search" [(ngModel)]="filter">
+
+    </nav>
+<table class="table table-responsive">
+
+<thead>
+<tr >
+<th (click)="sort('id')">Nazwa
+
+<span class="glyphicon sort-icon" *ngIf="key =='id'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+
+ </th>
+<th (click)="sort('name')">Nazwa
+
+<span class="glyphicon sort-icon" *ngIf="key =='name'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+
+ </th>
+<th (click)="sort('model')">Model
+
+<span class="glyphicon sort-icon" *ngIf="key =='model'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+
+ </th>
+<th (click)="sort('productionYear')">Data produkcji
+
+<span class="glyphicon sort-icon" *ngIf="key =='productionYear'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+
+ </th>
+</tr>
+</thead>
+<tbody>
+<tr  *ngFor="let car of cars | orderBy: key : reverse |filter: filter | paginate: { itemsPerPage: 5, currentPage: p };">
+<td>{{car.id}}</td>
+<td>{{car.name}}</td>
+<td>{{car.model}}</td>
+<td>{{car.productionYear}}</td>
+<td><button mat-button color="primary" (click)="openDialog(car.id)">Szczegóły pojazdu</button></td>
+<td><button mat-button color="primary" [routerLink]="['/car-edit', car.id]">Edytuj</button></td>
+
+</tr>
+
+</tbody>
+
+</table>
+      <pagination-controls previousLabel="Poprzednia strona" nextLabel="Następna strona" (pageChange)="p = $event"></pagination-controls>
+
+  <button mat-fab color="primary" [routerLink]="['/car-add']">Nowy</button>
+</div>
+</mat-card>
+

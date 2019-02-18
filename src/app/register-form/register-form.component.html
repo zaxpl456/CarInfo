@@ -1,0 +1,34 @@
+<mat-card>
+  <form  #userForm="ngForm" (ngSubmit)="register(userForm.value)">
+    <mat-card-header>
+      <mat-card-title><h2>Rejestracja użytkownika</h2></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field>
+        <input matInput placeholder="Nazwa użytkownika" [(ngModel)]="user.name"
+               required name="name" #name>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="password" matInput placeholder="Hasło" [(ngModel)]="user.password"
+               required name="password" #password>
+      </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Imie uzytkownika" [(ngModel)]="user.imie"
+                   required name="imie" #imie>
+          </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="Nazwisko uzytkownika" [(ngModel)]="user.nazwisko"
+                         required name="nazwisko" #nazwisko>
+                </mat-form-field>
+                      <mat-form-field>
+                        <input type="date" matInput placeholder="Data urodzenia" [(ngModel)]="user.dataUrodzenia"
+                               required name="dataUrodzenia" #dataUrodzenia>
+                      </mat-form-field>
+   </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit"
+              >Zarejestruj</button>
+    </mat-card-actions>
+  </form>
+</mat-card>
